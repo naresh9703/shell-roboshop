@@ -8,7 +8,7 @@ DOMAIN_NAME="nareshveeranala.shop"
 
 for instance in ${INSTANCES[@]}
 do
-    INSTANCE_ID=$(aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t2.micro --security-group-ids sg-050181a88007d400e --tag-specifications 'ResourceType=instance,Tags=[{key=Name,value=$instance}]'--query "Instances[0].InstanceId" --output text)
+    INSTANCE_ID=$(aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t2.micro --security-group-ids sg-050181a88007d400e --tag-specifications 'ResourceType=instance,Tags=[{key=Name,value=$instance}]' --query "Instances[0].InstanceId" --output text)
     if [ $instance != "frontend" ]
     then
         Ip=$(aws ec2 describe-instances --instance-ids "$INSTANCE_ID" --query 'eservations[0].Instances[0].PrivateIpAddress' --output text)
