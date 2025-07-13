@@ -16,7 +16,3 @@ do
         Ip=$(aws ec2 describe-instances --instance-ids "$INSTANCE_ID" --query 'eservations[0].Instances[0].PublicIpAddress' --output text)
     echo "$instance Ip address: $IP"
 done
-
-
-
-
