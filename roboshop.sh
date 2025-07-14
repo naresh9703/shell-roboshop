@@ -28,7 +28,7 @@ do
         ,"Changes": [{
         "Action"              : "UPSERT" # if resource set does not exit,route53 creates it, if a resource set exists route53 updates it with the values in the request.
         ,"ResourceRecordSet"  : {
-            "Name"              : "'$RECORD_NAME'"
+            "Name"              : "'$instance'.'$DOMAIN_NAME'"
             ,"Type"             : "A"
             ,"TTL"              : 1
             ,"ResourceRecords"  : [{
