@@ -6,8 +6,8 @@ INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipp
 ZONE_ID="Z07587484B7QL28V55A3" # replace with your ZONE ID
 DOMAIN_NAME="jyothi.online" # replace with your domain
 
-for instance in ${INSTANCES[@]}
-#for instance in $@
+#for instance in ${INSTANCES[@]}
+for instance in $@
 do
     INSTANCE_ID=$(aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t3.micro --security-group-ids sg-07d08d95aad2bbe0a --tag-specifications "ResourceType=instance,Tags=[{Key=Name, Value=$instance}]" --query "Instances[0].InstanceId" --output text)
     if [ $instance != "frontend" ]
@@ -26,7 +26,7 @@ do
     {
         "Comment": "Creating or Updating a record set for cognito endpoint"
         ,"Changes": [{
-        "Action"              : "UPSERT" # if resource set does not exit,route53 creates it, if a resource set exists route53 updates it with the values in the request.
+        "Action"              : "UPSERT"
         ,"ResourceRecordSet"  : {
             "Name"              : "'$instance'.'$DOMAIN_NAME'"
             ,"Type"             : "A"
